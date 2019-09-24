@@ -5,7 +5,6 @@
     "name": "ase-api",
     "namespace": "default",
     "selfLink": "/api/v1/namespaces/default/services/ase-api",
-    "resourceVersion": "18473",
     "labels": {
       "app": "ase-api"
     }
