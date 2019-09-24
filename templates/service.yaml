@@ -1,16 +1,30 @@
-apiVersion: v1
-kind: Service
-metadata:
-  name: {{ include "helm-ase-api.fullname" . }}
-  labels:
-{{ include "helm-ase-api.labels" . | indent 4 }}
-spec:
-  type: {{ .Values.service.type }}
-  ports:
-    - port: {{ .Values.service.port }}
-      targetPort: http
-      protocol: TCP
-      name: http
-  selector:
-    app.kubernetes.io/name: {{ include "helm-ase-api.name" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
+{
+  "kind": "Service",
+  "apiVersion": "v1",
+  "metadata": {
+    "name": "ase-api",
+    "namespace": "default",
+    "selfLink": "/api/v1/namespaces/default/services/ase-api",
+    "resourceVersion": "18473",
+    "labels": {
+      "app": "ase-api"
+    }
+  },
+  "spec": {
+    "ports": [
+      {
+        "protocol": "TCP",
+        "port": 8090,
+        "targetPort": 3000,
+        "nodePort": 32656
+      }
+    ],
+    "selector": {
+      "app": "ase-api"
+    },
+    "clusterIP": "10.3.0.7",
+    "type": "LoadBalancer",
+    "sessionAffinity": "None",
+    "externalTrafficPolicy": "Cluster"
+  }
+}

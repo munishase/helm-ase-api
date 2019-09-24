@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: "{{ include "helm-ase-api.fullname" . }}-test-connection"
+  name: "{{ include "demo-helm.fullname" . }}-test-connection"
   labels:
-{{ include "helm-ase-api.labels" . | indent 4 }}
+{{ include "demo-helm.labels" . | indent 4 }}
   annotations:
     "helm.sh/hook": test-success
 spec:
@@ -11,5 +11,5 @@ spec:
     - name: wget
       image: busybox
       command: ['wget']
-      args:  ['{{ include "helm-ase-api.fullname" . }}:{{ .Values.service.port }}']
+      args:  ['{{ include "demo-helm.fullname" . }}:{{ .Values.service.port }}']
   restartPolicy: Never
